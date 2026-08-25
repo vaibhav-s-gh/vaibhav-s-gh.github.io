@@ -88,6 +88,10 @@
     box-sizing: border-box;
 }
 
+html, body {
+    overflow-x: hidden;
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -722,12 +726,17 @@ nav ul li a:hover::after {
         padding: 6rem 2rem 2rem;
         display: flex;
         flex-direction: column;
-        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        
+        /* Add visibility rules here */
+        visibility: hidden; 
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s;
+        
         z-index: 100;
     }
 
     .nav-menu.is-active {
         right: 0;
+        visibility: visible; /* Makes it visible only when active */
     }
 
     .nav-menu ul {
