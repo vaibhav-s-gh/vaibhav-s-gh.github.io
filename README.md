@@ -22,11 +22,11 @@ Built focusing on core web fundamentals without heavy frameworks:
 
 ## 🚀 Local Setup
 
-To run this project locally, simply clone the repository and open the `index.html` file in your browser—no build tools or dependencies required!
+To run this project locally, simply clone the repository and open the `portfolio.html` file in your browser—no build tools or dependencies required!
 
 ```bash
 # Clone the repository
-git clone [https://github.com/yourusername/yourusername.github.io.git](https://github.com/yourusername/yourusername.github.io.git)
+git clone [https://github.com/vaibhav-s-gh/vaibhav-s-gh.github.io.git](https://github.com/vaibhav-s-gh/vaibhav-s-gh.github.io.git)
 
 # Navigate into the directory
-cd yourusername.github.io
+cd vaibhav-s-gh.github.io
