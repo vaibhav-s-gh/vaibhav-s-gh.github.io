@@ -1,9 +1,13 @@
-const themeToggleBtn = document.getElementById('theme-toggle');
-const themeIcon = themeToggleBtn.querySelector('.theme-icon');
+// ==========================================================================
+// THEME TOGGLE CONTROLLER
+// ==========================================================================
+const themeToggleCheckbox = document.getElementById('theme-toggle');
 const heroTagText = document.getElementById('hero-status-tag');
 
 const savedTheme = localStorage.getItem('theme');
 const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+// Dark mode is unchecked (Batman), Light mode is checked (Spidey)
 const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
 
 applyTheme(initialTheme);
@@ -11,20 +15,22 @@ applyTheme(initialTheme);
 function applyTheme(theme) {
     if (theme === 'light') {
         document.documentElement.setAttribute('data-theme', 'light');
-        themeIcon.textContent = '🕷️'; // Spidey Mode Toggle
-        if (heroTagText) heroTagText.textContent = "🕷️ QUEENS_NET // SDE & HARDWARE";
+        if (themeToggleCheckbox) themeToggleCheckbox.checked = true;
+        if (heroTagText) heroTagText.textContent = "🕷️ AMAZING SPIDER-MAN // QUEENS-V1.0";
     } else {
         document.documentElement.removeAttribute('data-theme');
-        themeIcon.textContent = '🦇'; // Batcave Mode Toggle
-        if (heroTagText) heroTagText.textContent = "🦇 GOTHAM_OS // SDE & EMBEDDED";
+        if (themeToggleCheckbox) themeToggleCheckbox.checked = false;
+        if (heroTagText) heroTagText.textContent = "🦇 GOTHAM_OS // BAT-V1.0";
     }
     localStorage.setItem('theme', theme);
 }
 
-themeToggleBtn.addEventListener('click', () => {
-    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-    applyTheme(isLight ? 'dark' : 'light');
-});
+// Listen for checkbox toggle
+if (themeToggleCheckbox) {
+    themeToggleCheckbox.addEventListener('change', (e) => {
+        applyTheme(e.target.checked ? 'light' : 'dark');
+    });
+}
 
 // ==========================================================================
 // MOBILE DRAWER CONTROLLER
@@ -68,9 +74,6 @@ window.addEventListener('resize', () => {
     }
 });
 
-// ==========================================================================
-// INTERACTIVE HANGING HERO (BUNGEE BOUNCE)
-// ==========================================================================
 // ==========================================================================
 // INTERACTIVE HANGING HERO (BUNGEE BOUNCE)
 // ==========================================================================
