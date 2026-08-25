@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaibhav Singh | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   <header>
+    <nav>
+        <div class="logo">
+            <a href="#hero">Vaibhav.dev</a>
+        </div>
+
+        <!-- Navigation Links (Sliding Drawer on Mobile) -->
+        <div class="nav-menu" id="nav-menu">
+            <ul>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Right Side Controls: Theme Switcher & Hamburger -->
+        <div class="nav-controls">
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+
+            <!-- Hamburger Button -->
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- HANGING HERO COMPONENT -->
+    <div class="hanging-hero" id="hanging-hero" aria-hidden="true">
+        <!-- The hanging line / batrope / spiderweb -->
+        <div class="hanging-thread"></div>
+        
+        <!-- Batman Figure (Shown in Dark Mode) -->
+        <div class="hero-character bat-figure">
+            <svg viewBox="0 0 100 120" width="46" height="55">
+                <!-- Bat-Rope Attachment -->
+                <circle cx="50" cy="5" r="4" fill="#f59e0b" />
+                <rect x="48" y="0" width="4" height="20" fill="#334155" />
+                
+                <!-- Upside-down Cape -->
+                <path d="M30,35 Q10,80 25,110 Q50,90 75,110 Q90,80 70,35 Z" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
+                
+                <!-- Tactical Body / Torso -->
+                <ellipse cx="50" cy="55" rx="16" ry="22" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+                <!-- Chest Bat Emblem -->
+                <path d="M44,52 L50,56 L56,52 L54,58 L58,58 L50,65 L42,58 L46,58 Z" fill="#f59e0b" />
+                
+                <!-- Utility Belt -->
+                <rect x="37" y="38" width="26" height="5" rx="2" fill="#f59e0b" />
+                
+                <!-- Upside Down Bat Cowl / Head -->
+                <circle cx="50" cy="85" r="14" fill="#0f172a" stroke="#1e293b" stroke-width="1.5" />
+                <!-- Cowl Ears (Pointing downward because he is upside down) -->
+                <polygon points="40,88 36,106 45,94" fill="#0f172a" />
+                <polygon points="60,88 64,106 55,94" fill="#0f172a" />
+                
+                <!-- Glowing Slit Eyes -->
+                <ellipse cx="44" cy="84" rx="3" ry="1.5" fill="#f59e0b" />
+                <ellipse cx="56" cy="84" rx="3" ry="1.5" fill="#f59e0b" />
+            </svg>
+        </div>
+
+       <!-- Spider-Man Figure (Comic Accurate Classic Red & Blue) -->
+<div class="hero-character spidey-figure">
+    <svg viewBox="0 0 100 120" width="46" height="55">
+        <!-- Webbing thread attachment -->
+        <line x1="50" y1="0" x2="50" y2="24" stroke="#002D72" stroke-width="2" />
+        <line x1="50" y1="0" x2="50" y2="24" stroke="#ffffff" stroke-width="1" stroke-dasharray="2 2" />
+        <ellipse cx="50" cy="24" rx="6" ry="3" fill="#D81E0B" />
+
+        <!-- Blue Comic Suit Base (Flanks & Shoulders) -->
+        <path d="M30,38 Q20,68 40,82 L60,82 Q80,68 70,38 Z" fill="#0B47A8" stroke="#002D72" stroke-width="1.5"/>
+
+        <!-- Red Suit Center & Mask (Classic Vest Section) -->
+        <path d="M38,36 Q34,65 50,78 Q66,65 62,36 Z" fill="#D81E0B" stroke="#002D72" stroke-width="1.5"/>
+
+        <!-- Inked Web Lines across Torso -->
+        <path d="M50,36 L50,78 M38,50 Q50,56 62,50 M36,64 Q50,70 64,64" stroke="#0a0e1a" stroke-width="0.9" fill="none" opacity="0.6"/>
+
+        <!-- Classic Black Spider Chest Emblem -->
+        <path d="M48,52 Q50,49 52,52 Q54,58 50,62 Q46,58 48,52 Z" fill="#0a0e1a"/>
+        <path d="M48,53 Q42,48 40,44 M52,53 Q58,48 60,44 M48,58 Q40,60 38,66 M52,58 Q60,60 62,66" stroke="#0a0e1a" stroke-width="0.9" fill="none"/>
+
+        <!-- Upside-down Head / Mask -->
+        <ellipse cx="50" cy="94" rx="14" ry="17" fill="#D81E0B" stroke="#002D72" stroke-width="1.5" />
+        <path d="M50,77 L50,111 M36,94 Q50,94 64,94 M39,83 Q50,89 61,83 M40,105 Q50,99 60,105" stroke="#0a0e1a" stroke-width="0.75" opacity="0.5" fill="none"/>
+
+        <!-- Romita-Style Expressive Mask Eyes -->
+        <!-- Left Eye (Viewer's Left) -->
+        <path d="M48,87 Q36,87 36,97 Q44,98 48,93 Z" fill="#ffffff" stroke="#0a0e1a" stroke-width="2" />
+        <!-- Right Eye (Viewer's Right) -->
+        <path d="M52,87 Q64,87 64,97 Q56,98 52,93 Z" fill="#ffffff" stroke="#0a0e1a" stroke-width="2" />
+    </svg>
+</div>
+</header>
+
+<!-- Backdrop overlay for mobile drawer -->
+<div class="nav-overlay" id="nav-overlay"></div>
+
+    <main>
+        <section id="hero">
+    <div class="hero-tag" id="hero-status-tag">🦇 GOTHAM_OS // SDE & EMBEDDED</div>
+    <h1>Hi, I'm Vaibhav Singh</h1>
+    <p><strong>1st Year B.Tech in CSBS</strong> | Aspiring Software Development Engineer</p>
+    <p>Developing robust software architectures with a passion for embedded electronics and IoT.</p>
+    
+    <div class="cta-buttons">
+        <a href="#projects">View My Work</a>
+        <a href="#contact">Get in Touch</a>
+    </div>
+</section>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                I am a first-year Computer Science and Business Systems (CSBS) student with a strong drive 
+                toward building scalable software solutions. While my primary focus is mastering Data Structures, 
+                Algorithms, and Full-Stack development, I also enjoy tinkering with microcontrollers and 
+                hardware interfacing.
+            </p>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <article class="edu-item">
+                <h3>Bachelor of Technology in Computer Science & Business Systems (CSBS)</h3>
+                <p><em>[Your University / College Name]</em> | 2026 – Present</p>
+                <p>Relevant Coursework: Data Structures, Object-Oriented Programming, Computational Mathematics, Business Strategy.</p>
+            </article>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <ul>
+                    <li>C / C++</li>
+                    <li>Python</li>
+                    <li>Java / JavaScript (Planned/In-progress)</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Core CS & Software Development</h3>
+                <ul>
+                    <li>Data Structures & Algorithms</li>
+                    <li>Object-Oriented Programming (OOP)</li>
+                    <li>Git & GitHub (Version Control)</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Electronics & Hardware (Interests)</h3>
+                <ul>
+                    <li>Arduino / ESP32 Microcontrollers</li>
+                    <li>Basic Circuit Design & IoT</li>
+                    <li>Sensor Interfacing</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            
+            <article class="project-card">
+                <h3>[Project Name 1: SDE / Software Focus]</h3>
+                <p><strong>Tech Stack:</strong> C++, Git, CLI / GUI</p>
+                <p>
+                    A brief 2-3 sentence overview of what the application does, key problem it solves, 
+                    and core algorithms/libraries used.
+                </p>
+                <a href="#" target="_blank">GitHub Repo</a>
+                <a href="#" target="_blank">Live Demo</a>
+            </article>
+
+            <article class="project-card">
+                <h3>[Project Name 2: Embedded / Electronics Focus]</h3>
+                <p><strong>Tech Stack:</strong> Arduino/C++, Sensors, Hardware Prototyping</p>
+                <p>
+                    A brief description of the hardware project (e.g., smart home automation, sensor telemetry, or robotics module).
+                </p>
+                <a href="#" target="_blank">GitHub / Schematics</a>
+            </article>
+        </section>
+
+        <section id="contact">
+            <h2>Let's Connect</h2>
+            <p>I am always open to discussing new opportunities, open-source collaborations, or exciting projects.</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:vaibhavsingh.cs26@gmail.com">vaibhavsingh.cs26@gmail.com</a></li>
+                <li><strong>GitHub:</strong> <a href="https://github.com/vaibhav-s-gh" target="_blank">github.com/vaibhav-s-gh</a></li>
+                <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourusername" target="_blank">linkedin.com/in/___</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+<footer>
+    <!-- Minimalist Theme Watermark Insignia -->
+    <div class="footer-insignia" id="footer-insignia" aria-hidden="true">
+        <!-- Bat-Insignia (Dark Mode) -->
+        <svg class="insignia-icon bat-logo" viewBox="0 0 100 45" width="40" height="18">
+            <path d="M50,14 L55,4 L60,11 Q78,0 98,15 Q82,24 88,40 Q68,26 50,44 Q32,26 12,40 Q18,24 2,15 Q22,0 40,11 L45,4 Z" fill="currentColor"/>
+        </svg>
+
+        <!-- Spider-Insignia (Light Mode) -->
+        <svg class="insignia-icon spidey-logo" viewBox="0 0 100 100" width="28" height="28">
+            <!-- Central Body -->
+            <ellipse cx="50" cy="40" rx="8" ry="12" fill="currentColor"/>
+            <ellipse cx="50" cy="62" rx="11" ry="18" fill="currentColor"/>
+            <!-- Legs (Minimalist Angular Lines) -->
+            <path d="M44,36 Q22,18 16,8 M56,36 Q78,18 84,8" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M42,44 Q14,35 10,26 M58,44 Q86,35 90,26" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M42,56 Q12,65 14,84 M58,56 Q88,65 86,84" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M44,66 Q24,85 28,95 M56,66 Q76,85 72,95" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+    </div>
+
+    <p>&copy; 2026 Vaibhav Singh. Built with semantic HTML & modern CSS.</p>
+</footer>
+    <script src="script.js"></script>
+    <script src="theme.js"></script>
+</body>
+</html>

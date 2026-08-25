@@ -1,0 +1,892 @@
+/* ==========================================================================
+   1. CSS VARIABLES & DESIGN TOKENS
+   ========================================================================== */
+:root {
+    /* --- BATMAN / GOTHAM NIGHT THEME (DEFAULT) --- */
+    --bg-primary: #090a0f;
+    --bg-secondary: #12141d;
+    --bg-card: rgba(18, 20, 29, 0.85);
+    --nav-bg: rgba(9, 10, 15, 0.92);
+    --nav-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.7);
+
+    --border-color: rgba(245, 158, 11, 0.15);       /* Batsignal Gold Border */
+    --border-hover: #f59e0b;
+    
+    --text-main: #f3f4f6;
+    --text-muted: #94a3b8;
+    
+    /* Batsignal Amber Accent */
+    --accent: #f59e0b;
+    --accent-glow: rgba(245, 158, 11, 0.18);
+    --hero-gradient: linear-gradient(135deg, #ffffff 30%, #f59e0b 90%);
+
+    /* Tactical CTA Buttons */
+    --btn-primary-bg: #f59e0b;
+    --btn-primary-text: #090a0f;
+    --btn-primary-hover-bg: #fbbf24;
+    --btn-primary-hover-text: #000000;
+
+    /* Background Pattern: Batcave Tactical Radar Grid */
+    --bg-pattern: radial-gradient(rgba(245, 158, 11, 0.05) 1px, transparent 1px);
+    --pattern-size: 28px 28px;
+    
+    --theme-tag: "🦇 GOTHAM_OS // BAT-V1.0";
+    --heading-icon: "🦇";
+
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 10px;
+}
+
+/* ==========================================================================
+   CLASSIC COMIC SPIDER-MAN (LIGHT THEME)
+   ========================================================================== */
+[data-theme="light"] {
+    /* Comic-Book Paper Canvas */
+    --bg-primary: #faf8f5;
+    --bg-secondary: #ffffff;
+    --bg-card: rgba(255, 255, 255, 0.94);
+    --nav-bg: rgba(250, 248, 245, 0.94);
+    --nav-shadow: 0 4px 20px -2px rgba(11, 71, 168, 0.08);
+
+    --border-color: rgba(11, 71, 168, 0.14);
+    --border-hover: #D81E0B;
+
+    --text-main: #0a0e1a;
+    --text-muted: #475569;
+
+    --spidey-red: #D81E0B;
+    --spidey-blue: #0B47A8;
+    --spidey-blue-deep: #002D72;
+
+    --accent: #D81E0B;
+    --accent-glow: rgba(216, 30, 11, 0.14);
+    --hero-gradient: linear-gradient(135deg, #D81E0B 20%, #0B47A8 85%);
+
+    --btn-primary-bg: #D81E0B;
+    --btn-primary-text: #ffffff;
+    --btn-primary-hover-bg: #0B47A8;
+    --btn-primary-hover-text: #ffffff;
+
+    /* --- BALANCED VISIBLE HALFTONE PATTERN --- */
+    --bg-pattern: 
+        radial-gradient(circle at 12px 12px, rgba(11, 71, 168, 0.10) 1.5px, transparent 1.6px),
+        radial-gradient(circle at 0px 0px, rgba(216, 30, 11, 0.10) 1.5px, transparent 1.6px);
+    --pattern-size: 24px 24px;
+
+    --theme-tag: "🕷️ AMAZING SPIDER-MAN // QUEENS-V1.0";
+    --heading-icon: "🕷️";
+}
+
+/* ==========================================================================
+   2. GLOBAL RESET & BASE STYLES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-primary);
+    background-image: var(--bg-pattern);
+    background-size: var(--pattern-size);
+    color: var(--text-main);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--text-main);
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+section {
+    padding: 5rem 0 3rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Minimalist glowing accent indicator for sections */
+h2::before {
+    content: var(--heading-icon);
+    font-size: 1.1rem;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+h2:hover::before {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* ==========================================================================
+   3. HEADER & NAVIGATION
+   ========================================================================== */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--nav-shadow);
+    transition: background-color 0.25s ease, 
+                border-color 0.25s ease, 
+                box-shadow 0.25s ease;
+}
+
+nav {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: color var(--transition);
+}
+
+/* Green "Active/Available" blinking indicator dot */
+.logo a::after {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+}
+
+.logo a:hover {
+    color: var(--accent);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+.theme-toggle {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.45rem 0.75rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    transition: var(--transition);
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   4. HERO SECTION
+   ========================================================================== */
+#hero {
+    padding: 7rem 0 4rem;
+}
+
+#hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+    background: var(--hero-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#hero p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    max-width: 650px;
+}
+
+#hero p strong {
+    color: var(--text-main);
+}
+
+/* Custom Themed Status Pill in Hero */
+.hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.5px;
+    padding: 0.3rem 0.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    margin-bottom: 1.25rem;
+    color: var(--accent);
+    box-shadow: 0 2px 10px var(--accent-glow);
+}
+
+.hero-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent);
+}
+
+/* ==========================================================================
+   HERO BUTTONS
+   ========================================================================== */
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.cta-buttons a {
+    display: inline-block;
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+/* Primary Button ("View My Work") */
+.cta-buttons a:first-child {
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border: 1px solid transparent;
+}
+
+.cta-buttons a:first-child:hover {
+    background-color: var(--btn-primary-hover-bg);
+    color: var(--btn-primary-hover-text);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--accent-glow);
+}
+
+/* Secondary Button ("Get in Touch") */
+.cta-buttons a:last-child {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+
+.cta-buttons a:last-child:hover {
+    border-color: var(--accent);
+    background-color: var(--accent-glow);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   5. ABOUT & EDUCATION
+   ========================================================================== */
+#about p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 750px;
+}
+
+.edu-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.edu-item:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+}
+
+.edu-item h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.3rem;
+}
+
+.edu-item p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.edu-item em {
+    color: var(--accent);
+    font-style: normal;
+}
+
+/* ==========================================================================
+   6. SKILLS SECTION (Interactive Chip Layout)
+   ========================================================================== */
+#skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+#skills h2 {
+    grid-column: 1 / -1;
+}
+
+.skill-category {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.skill-category:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.skill-category h3 {
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+    font-family: var(--font-mono);
+}
+
+.skill-category ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-category li {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.75rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    transition: var(--transition);
+}
+
+.skill-category li:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-glow);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   7. PROJECTS SECTION
+   ========================================================================== */
+.project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 1.75rem;
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent);
+    opacity: 0.6;
+    transition: opacity 0.25s ease;
+}
+
+.project-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px var(--accent-glow);
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+.project-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.project-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.project-card p strong {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+}
+
+.project-card a {
+    display: inline-block;
+    margin-right: 1rem;
+    font-size: 0.88rem;
+    font-family: var(--font-mono);
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.project-card a:hover {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+    color: var(--accent);
+}
+
+/* ==========================================================================
+   8. CONTACT & FOOTER
+   ========================================================================== */
+#contact p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+#contact ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+#contact li {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+#contact strong {
+    color: var(--text-main);
+    display: inline-block;
+    width: 90px;
+}
+
+footer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   9. RESPONSIVE BREAKPOINTS (Mobile Optimization)
+   ========================================================================== */
+@media (max-width: 640px) {
+    #hero h1 {
+        font-size: 2.2rem;
+    }
+
+    nav ul {
+        gap: 1rem;
+    }
+
+    nav a {
+        font-size: 0.85rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .cta-buttons a {
+        text-align: center;
+    }
+
+    #skills {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   SCROLL REVEAL ANIMATIONS
+   ========================================================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional: Staggered delay for child cards inside a section */
+.reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal-stagger.active > *:nth-child(1) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.active > *:nth-child(2) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.active > *:nth-child(3) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.active > *:nth-child(4) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
+
+/* Accessibility: Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal-stagger > * {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+/* ==========================================================================
+   ACTIVE NAVBAR LINK STYLING
+   ========================================================================== */
+nav ul li a {
+    position: relative;
+    padding-bottom: 4px;
+}
+
+/* Accent color when active */
+nav ul li a.active {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Subtle animated underline indicator */
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav ul li a.active::after,
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   NAVIGATION & CONTROLS LAYOUT
+   ========================================================================== */
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Hamburger button hidden on desktop */
+.hamburger-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 32px;
+    height: 24px;
+    z-index: 110;
+}
+
+.hamburger-line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-main);
+    border-radius: 2px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.2s ease,
+                background-color 0.25s ease;
+}
+
+/* Morphing hamburger to 'X' when open */
+.hamburger-btn.is-active .hamburger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-btn.is-active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn.is-active .hamburger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Backdrop Overlay */
+.nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 95;
+}
+
+.nav-overlay.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE DRAWER (< 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .hamburger-btn {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--bg-secondary);
+        border-left: 1px solid var(--border-color);
+        box-shadow: -8px 0 24px rgba(0, 0, 0, 0.5);
+        padding: 6rem 2rem 2rem;
+        display: flex;
+        flex-direction: column;
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 100;
+    }
+
+    .nav-menu.is-active {
+        right: 0;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 1.75rem;
+    }
+
+    .nav-menu ul li a {
+        font-size: 1.15rem;
+        display: inline-block;
+        width: 100%;
+    }
+}
+
+/* ==========================================================================
+   HANGING SUPERHERO (BATMAN / SPIDER-MAN)
+   ========================================================================== */
+.hanging-hero {
+    position: absolute;
+    top: 100%;                  
+    right: 8%;                  
+    transform-origin: top center; /* Anchored to the navbar */
+    animation: gentleSwing 4.5s ease-in-out infinite alternate;
+    pointer-events: auto;
+    cursor: pointer;
+    z-index: 105;
+    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.35));
+}
+
+/* 1. Base Thread: Bouncy snap-back transition */
+.hanging-thread {
+    width: 2px;
+    height: 38px; /* Default length */
+    margin: 0 auto;
+    position: relative;
+    background: #475569; 
+    transition: height 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease;
+}
+
+[data-theme="light"] .hanging-thread {
+    background: repeating-linear-gradient(to bottom, #cbd5e1, #cbd5e1 3px, #ffffff 3px, #ffffff 6px);
+    box-shadow: 0 0 4px rgba(225, 29, 72, 0.2);
+}
+
+/* 2. Base Character: Bouncy scale transition */
+.hero-character {
+    display: none;
+    margin-top: -2px;
+    transform-origin: top center;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bat-figure { display: block; }
+.spidey-figure { display: none; }
+
+[data-theme="light"] .bat-figure { display: none; }
+[data-theme="light"] .spidey-figure { display: block; }
+
+/* 3. Hover State: Gentle stretch (stays attached to roof) */
+.hanging-hero:hover { filter: drop-shadow(0 12px 18px var(--accent-glow)); }
+.hanging-hero:hover .hanging-thread { height: 48px; }
+.hanging-hero:hover .hero-character { transform: scale(1.05); }
+
+/* 4. Active Bungee State (Triggered by JS) */
+.hanging-hero.is-bouncing {
+    animation-play-state: paused; /* Freezes the swing temporarily */
+}
+
+.hanging-hero.is-bouncing .hanging-thread {
+    height: 120px; /* Stretches the web deep down */
+    transition: height 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Fast pull down */
+}
+
+.hanging-hero.is-bouncing .hero-character {
+    transform: scale(1.15);
+    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes gentleSwing {
+    0% { transform: rotate(-7deg); }
+    50% { transform: rotate(5deg); }
+    100% { transform: rotate(-7deg); }
+}
+
+/* Character Switching Rules */
+.hero-character {
+    display: none;
+    margin-top: -2px;
+}
+
+/* Dark Mode: Show Batman, Hide Spidey */
+.bat-figure {
+    display: block;
+}
+.spidey-figure {
+    display: none;
+}
+
+/* Light Mode: Show Spidey, Hide Batman */
+[data-theme="light"] .bat-figure {
+    display: none;
+}
+[data-theme="light"] .spidey-figure {
+    display: block;
+}
+
+/* Gentle Pendulum Physics Animation */
+@keyframes gentleSwing {
+    0% { transform: rotate(-7deg); }
+    50% { transform: rotate(5deg); }
+    100% { transform: rotate(-7deg); }
+}
+
+@media (max-width: 640px) {
+    .hanging-hero {
+        right: 4%;
+        transform: scale(0.85); /* Mobile scale */
+        animation: gentleSwingMobile 4.5s ease-in-out infinite alternate;
+    }
+    @keyframes gentleSwingMobile {
+        0% { transform: scale(0.85) rotate(-5deg); }
+        100% { transform: scale(0.85) rotate(5deg); }
+    }
+}
+
+/* ==========================================================================
+   MINIMALIST FOOTER INSIGNIA
+   ========================================================================== */
+.footer-insignia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    opacity: 0.25; /* Low opacity keeps it subtle and non-distracting */
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color: var(--text-muted);
+}
+
+/* Lights up slightly in your theme's accent color on hover */
+.footer-insignia:hover {
+    opacity: 0.85;
+    color: var(--accent);
+    transform: scale(1.1);
+    cursor: default;
+}
+
+/* Visibility toggling based on theme */
+.insignia-icon {
+    display: none;
+}
+
+.bat-logo {
+    display: block;
+}
+
+[data-theme="light"] .bat-logo {
+    display: none;
+}
+
+[data-theme="light"] .spidey-logo {
+    display: block;
+}
