@@ -1,5 +1,5 @@
 // ==========================================================================
-// THEME TOGGLE CONTROLLER
+// 1. THEME TOGGLE CONTROLLER & STATUS BADGE
 // ==========================================================================
 const themeToggleCheckbox = document.getElementById('theme-toggle');
 const heroTagText = document.getElementById('hero-status-tag');
@@ -7,7 +7,6 @@ const heroTagText = document.getElementById('hero-status-tag');
 const savedTheme = localStorage.getItem('theme');
 const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-// Dark mode is unchecked (Batman), Light mode is checked (Spidey)
 const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
 
 applyTheme(initialTheme);
@@ -16,11 +15,11 @@ function applyTheme(theme) {
     if (theme === 'light') {
         document.documentElement.setAttribute('data-theme', 'light');
         if (themeToggleCheckbox) themeToggleCheckbox.checked = true;
-        if (heroTagText) heroTagText.textContent = "🕷️ AMAZING SPIDER-MAN // QUEENS-V1.0";
+        if (heroTagText) heroTagText.textContent = "🕷️ Spider-Man";
     } else {
         document.documentElement.removeAttribute('data-theme');
         if (themeToggleCheckbox) themeToggleCheckbox.checked = false;
-        if (heroTagText) heroTagText.textContent = "🦇 GOTHAM_OS // BAT-V1.0";
+        if (heroTagText) heroTagText.textContent = "🦇 Dark Knight";
     }
     localStorage.setItem('theme', theme);
 }
@@ -29,6 +28,26 @@ function applyTheme(theme) {
 if (themeToggleCheckbox) {
     themeToggleCheckbox.addEventListener('change', (e) => {
         applyTheme(e.target.checked ? 'light' : 'dark');
+    });
+}
+
+// ==========================================================================
+// 2. INTERACTIVE HANGING HERO (BUNGEE BOUNCE)
+// ==========================================================================
+const hangingHero = document.getElementById('hanging-hero');
+
+if (hangingHero) {
+    hangingHero.addEventListener('click', () => {
+        // Prevent clicking again if it is already in the middle of a bounce
+        if (hangingHero.classList.contains('is-bouncing')) return;
+
+        // Add class to stretch the web down quickly
+        hangingHero.classList.add('is-bouncing');
+        
+        // Wait 250ms, then remove class to trigger the bouncy CSS snap-back
+        setTimeout(() => {
+            hangingHero.classList.remove('is-bouncing');
+        }, 250);
     });
 }
 
@@ -74,22 +93,3 @@ window.addEventListener('resize', () => {
     }
 });
 
-// ==========================================================================
-// INTERACTIVE HANGING HERO (BUNGEE BOUNCE)
-// ==========================================================================
-const hangingHero = document.getElementById('hanging-hero');
-
-if (hangingHero) {
-    hangingHero.addEventListener('click', () => {
-        // Prevent clicking again if already bouncing
-        if (hangingHero.classList.contains('is-bouncing')) return;
-
-        // 1. Add class to stretch the web (fast pull-down)
-        hangingHero.classList.add('is-bouncing');
-        
-        // 2. Wait 250ms, then remove class to trigger the bouncy CSS snap-back
-        setTimeout(() => {
-            hangingHero.classList.remove('is-bouncing');
-        }, 250);
-    });
-}
